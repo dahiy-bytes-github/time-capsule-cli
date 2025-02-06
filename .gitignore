@@ -1,1 +1,46 @@
-venv/\n__pycache__/\ntime_capsule.db
+# Virtual environment
+venv/
+.env
+*.env
+
+# Byte-compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs and system files
+*.log
+nohup.out
+.DS_Store
+Thumbs.db
+
+# SQLite database files
+*.sqlite3
+*.db
+*.sqlite
+
+# Python package files
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# Editor and OS-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# Jupyter Notebook Checkpoints (if used)
+.ipynb_checkpoints/
+
+# Coverage reports (if running tests)
+.coverage
+htmlcov/
+*.cover
+
+# Pytest cache
+.pytest_cache/
