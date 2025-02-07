@@ -37,3 +37,10 @@ def add_message(capsule_id, content):
     session.add(message)
     session.commit()
     print("Message added successfully.")
+
+@cli.command()
+def list_users():
+    """List all users"""
+    users = session.query(User).all()
+    for user in users:
+        print(f"{user.id}: {user.name}")
