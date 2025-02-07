@@ -20,3 +20,12 @@ users = [
 
 session.add_all(users)
 session.commit()
+
+# Adding sample capsules
+capsules = [
+    Capsule(name="Memories of Youth", open_date="2030-05-01", user_id=1),
+    Capsule(name="Letters to My Future Self", open_date="2028-09-12", user_id=2),
+    Capsule(name="Family Archive", open_date="2040-01-20", user_id=3),
+    Capsule(name="My Travel Diaries", open_date="2032-06-15", user_id=4),
+    Capsule(name="Business Goals", open_date="2035-11-30", user_id=5),
+]
