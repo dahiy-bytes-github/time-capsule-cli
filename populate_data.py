@@ -1,7 +1,12 @@
-from database import session
-from models import User, Capsule, Message
+from sqlalchemy.orm import sessionmaker
+from datetime import datetime
+from setup_db import engine, User, Capsule, Message
 
-# Adding some users
+# Create a new session
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Add users
 users = [
     User(name="Kwame Mensah"),
     User(name="Zainab Bello"),
@@ -21,33 +26,22 @@ users = [
 session.add_all(users)
 session.commit()
 
-# Adding sample capsules
+# Fetch user IDs dynamically
+user_ids = {user.name: user.id for user in session.query(User).all()}
+
+# Add capsules
 capsules = [
-    Capsule(name="Memories of Youth", open_date="2030-05-01", user_id=1),
-    Capsule(name="Letters to My Future Self", open_date="2028-09-12", user_id=2),
-    Capsule(name="Family Archive", open_date="2040-01-20", user_id=3),
-    Capsule(name="My Travel Diaries", open_date="2032-06-15", user_id=4),
-    Capsule(name="Business Goals", open_date="2035-11-30", user_id=5),
+    Capsule(name="Memories of Youth", open_date=datetime.strptime("2030-05-01", "%Y-%m-%d").date(), user_id=user_ids["Kwame Mensah"]),
+    Capsule(name="Letters to My Future Self", open_date=datetime.strptime("2028-09-12", "%Y-%m-%d").date(), user_id=user_ids["Zainab Bello"]),
+    Capsule(name="Family Archive", open_date=datetime.strptime("2040-01-20", "%Y-%m-%d").date(), user_id=user_ids["Thabo Mokoena"]),
+    Capsule(name="My Travel Diaries", open_date=datetime.strptime("2032-06-15", "%Y-%m-%d").date(), user_id=user_ids["Amina Yusuf"]),
+    Capsule(name="Business Goals", open_date=datetime.strptime("2035-11-30", "%Y-%m-%d").date(), user_id=user_ids["Obafemi Adewale"]),
 ]
+
 session.add_all(capsules)
 session.commit()
 
-# Adding encrypted messages
-messages = [
-    Message(capsule_id=1),
-    Message(capsule_id=2),
-    Message(capsule_id=3),
-    Message(capsule_id=4),
-    Message(capsule_id=5),
-]
+print("✅ Database populated successfully!")
 
-messages[0].set_content("This is my childhood memory.")
-messages[1].set_content("Future me, I hope you achieved your dreams.")
-messages[2].set_content("Family is everything. Cherish them always.")
-messages[3].set_content("Wanderlust runs in my veins.")
-messages[4].set_content("This is my 10-year business plan.")
-
-session.add_all(messages)
-session.commit()
-
-print("Database populated with sample data.")
+# Close session
+session.close()

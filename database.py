@@ -1,10 +1,20 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-# SQLite database
-DATABASE_URL = "sqlite:///time_capsule.db"
+DATABASE_URL = "sqlite:///database.db"
 
-engine = create_engine(DATABASE_URL, echo=False)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# Create engine
+engine = create_engine(DATABASE_URL, echo=True)
+
+# Base class for models
 Base = declarative_base()
-session = SessionLocal()
+
+# Session factory
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Function to create a new session
+def get_session():
+    return SessionLocal()
+
+# Create tables if they don't exist
+Base.metadata.create_all(engine)

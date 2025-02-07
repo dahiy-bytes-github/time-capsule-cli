@@ -1,6 +1,7 @@
-from database import Base, engine
+from database import engine, Base
+from models import User, Capsule, Message  # Import models
 
-Base.metadata.drop_all(engine)  # Resets the database
-Base.metadata.create_all(engine)
+# Create all tables
+Base.metadata.create_all(bind=engine)
 
-print("Database schema initialized successfully.")
+print("✅ Database schema initialized successfully.")
