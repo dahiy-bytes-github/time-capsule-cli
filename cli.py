@@ -15,7 +15,7 @@ def add_user(name):
     session.add(user)
     session.commit()
     print(f"User '{name}' added successfully.")
-    
+
 @cli.command()
 @click.argument("user_id", type=int)
 @click.argument("name")
@@ -26,3 +26,14 @@ def add_capsule(user_id, name, open_date):
     session.add(capsule)
     session.commit()
     print(f"Capsule '{name}' created for User ID {user_id}.")
+
+@cli.command()
+@click.argument("capsule_id", type=int)
+@click.argument("content")
+def add_message(capsule_id, content):
+    """Add a message to a time capsule"""
+    message = Message(capsule_id=capsule_id)
+    message.set_content(content)
+    session.add(message)
+    session.commit()
+    print("Message added successfully.")
