@@ -32,3 +32,22 @@ capsules = [
 session.add_all(capsules)
 session.commit()
 
+# Adding encrypted messages
+messages = [
+    Message(capsule_id=1),
+    Message(capsule_id=2),
+    Message(capsule_id=3),
+    Message(capsule_id=4),
+    Message(capsule_id=5),
+]
+
+messages[0].set_content("This is my childhood memory.")
+messages[1].set_content("Future me, I hope you achieved your dreams.")
+messages[2].set_content("Family is everything. Cherish them always.")
+messages[3].set_content("Wanderlust runs in my veins.")
+messages[4].set_content("This is my 10-year business plan.")
+
+session.add_all(messages)
+session.commit()
+
+print("Database populated with sample data.")
