@@ -44,3 +44,17 @@ def list_users():
     users = session.query(User).all()
     for user in users:
         print(f"{user.id}: {user.name}")
+
+@cli.command()
+@click.argument("capsule_id", type=int)
+def view_messages(capsule_id):
+    """View all messages in a time capsule"""
+    messages = session.query(Message).filter_by(capsule_id=capsule_id).all()
+    if messages:
+        for message in messages:
+            print(f"- {message.get_content()}")
+    else:
+        print("No messages found for this capsule.")
+
+if __name__ == "__main__":
+    cli()
