@@ -33,16 +33,15 @@ The **Time Capsule CLI** is a Python-based command-line application that allows 
 time_capsule_cli/ # Root directory ├── venv/ # Virtual environment (optional) ├── database.py # Database setup and configuration ├── models.py # ORM models (Capsule, Message, User) ├── cli.py # Main CLI script with commands ├── setup_db.py # Initializes the database schema ├── populate_data.py # Populates the database with initial data ├── requirements.txt # Python dependencies ├── README.md # Project documentation
 
 
- Installation  
-
-### **1️⃣ Clone the Repository**  
+ ## Installation  
+ 
 Clone this repository to your local machine:  
 
 ```bash
 git clone https://github.com/dahiy-bytes-github/time-capsule-cli.git
 cd time_capsule_cli
 
-
+Create virtual environment
 python3 -m venv venv  # Create virtual environment
 source venv/bin/activate  # Activate virtual environment
 Install Dependencies: Install the required dependencies from requirements.txt:
