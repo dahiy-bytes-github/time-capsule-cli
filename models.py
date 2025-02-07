@@ -14,3 +14,10 @@ with open(KEY_FILE, "rb") as f:
     ENCRYPTION_KEY = f.read()
 
 cipher = Fernet(ENCRYPTION_KEY)
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False, unique=True)
+    capsules = relationship("Capsule", back_populates="user")
