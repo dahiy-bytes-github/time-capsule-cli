@@ -31,3 +31,11 @@ class Capsule(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     user = relationship("User", back_populates="capsules")
     messages = relationship("Message", back_populates="capsule")
+
+class Message(Base):
+    __tablename__ = "messages"
+
+    id = Column(Integer, primary_key=True)
+    capsule_id = Column(Integer, ForeignKey("capsules.id"))
+    encrypted_content = Column(String, nullable=False)
+    capsule = relationship("Capsule", back_populates="messages")
