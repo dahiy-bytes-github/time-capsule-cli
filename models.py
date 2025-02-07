@@ -39,3 +39,11 @@ class Message(Base):
     capsule_id = Column(Integer, ForeignKey("capsules.id"))
     encrypted_content = Column(String, nullable=False)
     capsule = relationship("Capsule", back_populates="messages")
+    
+    def set_content(self, content):
+        """Encrypt and store the message content"""
+        self.encrypted_content = cipher.encrypt(content.encode()).decode()
+
+    def get_content(self):
+        """Decrypt and retrieve the message content"""
+        return cipher.decrypt(self.encrypted_content.encode()).decode()
