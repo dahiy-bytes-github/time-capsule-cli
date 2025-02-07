@@ -29,3 +29,6 @@ capsules = [
     Capsule(name="My Travel Diaries", open_date="2032-06-15", user_id=4),
     Capsule(name="Business Goals", open_date="2035-11-30", user_id=5),
 ]
+session.add_all(capsules)
+session.commit()
+
