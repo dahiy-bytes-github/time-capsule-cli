@@ -21,3 +21,13 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False, unique=True)
     capsules = relationship("Capsule", back_populates="user")
+
+class Capsule(Base):
+    __tablename__ = "capsules"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    open_date = Column(Date, nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    user = relationship("User", back_populates="capsules")
+    messages = relationship("Message", back_populates="capsule")
